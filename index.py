@@ -420,12 +420,12 @@ if __name__=='__main__':
         6:pd.Series({'MH0':65,'MHc':500,'MA0':494,  'LaL':0.009,'La2':0.1})
         }    
     N=6
-    MH0=int(BP[N]['MH0'])
-    MHc=int(BP[N]['MHc'])
-    MA0=BP[N]['MA0']
+    MH0=int(BP[N].MH0)
+    MHc=int(BP[N].MHc)
+    MA0=BP[N].MA0
     if MH0%1!=0 or MHc%1!=0:
         sys.exit('ERROR: MH0 and MHc must be integer')
 
-    LambdasL=[BP[N]['LaL']]#,0.02,0.05,0.07,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,1.0,3.0,5.0,7.0,10.0]
+    LambdasL=[BP[N].LaL]#,0.02,0.05,0.07,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,1.0,3.0,5.0,7.0,10.0]
     
     cfg=main(LambdasL,MH0,MHc,MA0,number_of_events=100000)    

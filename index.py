@@ -76,7 +76,7 @@ def lamL_loop(MH0,MHc,MA0,lamL,cfg):
 0    
 ../'''+cfg.LHA_input_file+'''
 ../'''+cfg.Card_file+'''
-set nevents'''+str(cfg.number_of_events)+'''
+set nevents '''+str(cfg.number_of_events)+'''
 set wa0 auto
 set whch auto 
 set lamL '''+str(lamL)+'''
@@ -416,10 +416,12 @@ if __name__=='__main__':
     #BP={3:{'MH0':65,'MHc':200,'MA0':180.5,'LaL':0.009,'La2':0.1},
     #    6:{'MH0':65,'MHc':500,'MA0':494,  'LaL':0.009,'La2':0.1}
     #    }    
-    BP={3:pd.Series({'MH0':65,'MHc':200,'MA0':180.5,'LaL':0.009,'La2':0.1}),
-        6:pd.Series({'MH0':65,'MHc':500,'MA0':494,  'LaL':0.009,'La2':0.1})
+    BP={3:pd.Series({'MH0':65,'MHc':200,'MA0':189.5,'LaL':0.009,'La2':0.1}),
+        6:pd.Series({'MH0':65,'MHc':500,'MA0':494,  'LaL':0.009,'La2':0.1}),
+        7:pd.Series({'MH0':65,'MHc':750,'MA0':750,  'LaL':0.009,'La2':0.1}),
+        8:pd.Series({'MH0':120,'MHc':750,'MA0':750,  'LaL':0.009,'La2':0.1})
         }    
-    N=6
+    N=7
     MH0=int(BP[N].MH0)
     MHc=int(BP[N].MHc)
     MA0=BP[N].MA0

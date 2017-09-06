@@ -419,7 +419,7 @@ if __name__=='__main__':
     BP={3:pd.Series({'MH0':65, 'MHc':200,'MA0':189.5,'LaL':0.009,'La2':0.1}),
         6:pd.Series({'MH0':65, 'MHc':500,'MA0':494,  'LaL':0.009,'La2':0.1}),
         7:pd.Series({'MH0':65, 'MHc':750,'MA0':750,  'LaL':0.009,'La2':0.1}),
-        8:pd.Series({'MH0':65, 'MHc':750,'MA0':750,  'LaL':1.,   'La2':0.1}),
+        8:pd.Series({'MH0':65, 'MHc':750,'MA0':750,  'LaL':0.5,   'La2':0.1}),
         9:pd.Series({'MH0':120,'MHc':750,'MA0':750,  'LaL':0.009,'La2':0.1})
         }    
     N=8

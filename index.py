@@ -412,10 +412,9 @@ def test_all():
     nose.tools.assert_almost_equal(df.xs_240.values[0],5.288E-8)
     
 if __name__=='__main__':
-    #Benckmark points from 1604.03045
-    #BP={3:{'MH0':65,'MHc':200,'MA0':180.5,'LaL':0.009,'La2':0.1},
-    #    6:{'MH0':65,'MHc':500,'MA0':494,  'LaL':0.009,'La2':0.1}
-    #    }    
+    VBF=True
+    if not VBF:
+        MJ=True
     BP={3:pd.Series({'MH0':65, 'MHc':200,'MA0':189.5,'LaL':0.009,'La2':0.1}),
         6:pd.Series({'MH0':65, 'MHc':500,'MA0':494,  'LaL':0.009,'La2':0.1}),
         7:pd.Series({'MH0':65, 'MHc':750,'MA0':750,  'LaL':0.009,'La2':0.1}),
@@ -423,6 +422,8 @@ if __name__=='__main__':
         9:pd.Series({'MH0':110,'MHc':750,'MA0':750,  'LaL':0.009,'La2':0.1})
         }    
     N=7
+    if MJ:
+        N=9
     MH0=int(BP[N].MH0)
     MHc=int(BP[N].MHc)
     MA0=BP[N].MA0
@@ -430,5 +431,7 @@ if __name__=='__main__':
         sys.exit('ERROR: MH0 and MHc must be integer')
 
     LambdasL=[BP[N].LaL]#,0.02,0.05,0.07,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,1.0,3.0,5.0,7.0,10.0]
+    if MJ:
+        LambdasL=[0.01,0.05,0.1,0.5,1.,2.]
     
     cfg=main(LambdasL,MH0,MHc,MA0,number_of_events=100000)    

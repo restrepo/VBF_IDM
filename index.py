@@ -422,7 +422,7 @@ if __name__=='__main__':
         8:pd.Series({'MH0':65, 'MHc':750,'MA0':750,  'LaL':0.5,   'La2':0.1}),
         9:pd.Series({'MH0':110,'MHc':750,'MA0':750,  'LaL':0.009,'La2':0.1})
         }    
-    N=8
+    N=7
     MH0=int(BP[N].MH0)
     MHc=int(BP[N].MHc)
     MA0=BP[N].MA0

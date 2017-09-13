@@ -72,20 +72,22 @@ output ../'''+cfg.work_dir+'''/'''+cfg.output_dir+'''
 '''
 
 def lamL_loop(MH0,MHc,MA0,lamL,cfg):
-    return '''launch ../'''+cfg.work_dir+'''/'''+cfg.output_dir+'''
-0    
-../'''+cfg.LHA_input_file+'''
-../'''+cfg.Card_file+'''
-set nevents '''+str(cfg.number_of_events)+'''
-set wa0 auto
-set whch auto 
-set lamL '''+str(lamL)+'''
-set mmh0 '''+str(MH0)+'''
-set mma0 '''+str(MA0)+'''
-set mmhch '''+str(MHc)+'''
-0
-
-''' 
+    mg5_script='launch ../{:s}/{:s}\n'.format(cfg.work_dir,cfg.output_dir)
+    mg5_script=mg5_script+'0\n'
+    mg5_script=mg5_script+'{:s}\n'.format(cfg.LHA_input_file)
+    mg5_script=mg5_script+'{:s}\n'.format(cfg.Card_file)
+    mg5_script=mg5_script+'set nevents {:d}\n'.format(cfg.number_of_events)
+    if MH0>0:
+        mg5_script=mg5_script+'set wa0 auto\n'
+        mg5_script=mg5_script+'set whch auto \n'
+        mg5_script=mg5_script+'set lamL {:s}\n'.format(str(lamL))
+        mg5_script=mg5_script+'set mmh0 {:s}\n'.format(str(MH0))
+        mg5_script=mg5_script+'set mma0 {:s}\n'.format(str(MA0))
+        mg5_script=mg5_script+'set mmhch {:s}\n'.format(str(MHc))
+    mg5_script=mg5_script+'\n'
+    mg5_script=mg5_script+'0\n'
+    
+    return mg5_script
 
 def closing(cfg):
     return '''launch ../'''+cfg.work_dir+'''/'''+cfg.output_dir+''' -i
@@ -204,7 +206,7 @@ def run_madevent(MH0,MHc,MA0,LambdasL,cfg):
     for r in range(1,len(LambdasL)+1):
         f.write('pythia run_%02d\n' %r)
         f.write('3\n')
-        f.write('../../../'+cfg.Delphes_card_file+'\n')
+        f.write(cfg.Delphes_card_file+'\n')
         f.write('0\n')
     f.close()
 
@@ -290,15 +292,16 @@ def main(scan_par,*input_par,only_config=False,skip_MadGraph=False,**cfg):
     if 'MADGRAPH' not in cfg:           
         cfg['MADGRAPH']=MADGRAPH # Name of the MadGraph installation. Configured at beggining        
     if 'Card_file' not in cfg:
-        cfg['Card_file']='Cards/run_card.dat'
+        cfg['Card_file']='../Cards/run_card.dat'
     if 'number_of_events' not in cfg:
         cfg['number_of_events']=1000
     if 'UFO_model' not in cfg:
         cfg['UFO_model']='InertDoublet_UFO'
     if 'LHA_input_file' not in cfg:       
-        cfg['LHA_input_file']='MadGraph_cards/benchmarks/param_card_template.dat'
+        cfg['LHA_input_file']='../MadGraph_cards/benchmarks/param_card_template.dat'
+    #Loaded from cwd=cfg.work_dir+'/'+cfg.output_dir:
     if 'Delphes_card_file' not in cfg:       
-        cfg['Delphes_card_file']='Delphes_cards/delphes_card.dat'
+        cfg['Delphes_card_file']='../../../Delphes_cards/delphes_card.dat'
     if 'processes' not in cfg:        
         cfg['processes']='generate p p > h2 h2 j j @0'        
         #cfg['processes']='generate p p > h2 h2'                
@@ -412,21 +415,23 @@ def test_all():
     nose.tools.assert_almost_equal(df.xs_240.values[0],5.288E-8)
     
 if __name__=='__main__':
-    VBF=True
+    VBF=True; MJ=False
     if not VBF:
         MJ=True
     BP={3:pd.Series({'MH0':65, 'MHc':200,'MA0':189.5,'LaL':0.009,'La2':0.1}),
         6:pd.Series({'MH0':65, 'MHc':500,'MA0':494,  'LaL':0.009,'La2':0.1}),
         7:pd.Series({'MH0':65, 'MHc':750,'MA0':750,  'LaL':0.009,'La2':0.1}),
         8:pd.Series({'MH0':65, 'MHc':750,'MA0':750,  'LaL':0.5,   'La2':0.1}),
-        9:pd.Series({'MH0':110,'MHc':750,'MA0':750,  'LaL':0.009,'La2':0.1})
+        9:pd.Series({'MH0':110,'MHc':750,'MA0':750,  'LaL':0.009,'La2':0.1}),
+        10:pd.Series({'MH0':0,'MHc':0,'MA0':0,  'LaL':0,'La2':0})
         }    
-    N=7
+    N=3
     if MJ:
         N=9
     MH0=int(BP[N].MH0)
     MHc=int(BP[N].MHc)
     MA0=BP[N].MA0
+
     if MH0%1!=0 or MHc%1!=0:
         sys.exit('ERROR: MH0 and MHc must be integer')
 

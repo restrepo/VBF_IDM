@@ -423,9 +423,10 @@ if __name__=='__main__':
         7:pd.Series({'MH0':65, 'MHc':750,'MA0':750,  'LaL':0.009,'La2':0.1}),
         8:pd.Series({'MH0':65, 'MHc':750,'MA0':750,  'LaL':0.5,   'La2':0.1}),
         9:pd.Series({'MH0':110,'MHc':750,'MA0':750,  'LaL':0.009,'La2':0.1}),
-        10:pd.Series({'MH0':0,'MHc':0,'MA0':0,  'LaL':0,'La2':0})
+        10:pd.Series({'MH0':0,'MHc':0,'MA0':0,  'LaL':0,'La2':0}),
+        11:pd.Series({'MH0':100,'MHc':200,'MA0':105,  'LaL':1,'La2':1})
         }    
-    N=3
+    N=11
     if MJ:
         N=9
     MH0=int(BP[N].MH0)
@@ -439,4 +440,4 @@ if __name__=='__main__':
     if MJ:
         LambdasL=[0.01,0.05,0.1,0.5,1.,2.]
     
-    cfg=main(LambdasL,MH0,MHc,MA0,number_of_events=100000)    
+    cfg=main(LambdasL,MH0,MHc,MA0,number_of_events=10000)    

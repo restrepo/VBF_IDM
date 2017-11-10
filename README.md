@@ -13,4 +13,5 @@ git submodule update --init --recursive
 * To get the efficiency for a becnhmark point, see the pyroot directory
 * To reproduce the figs 7 to 9 of paper see: `Significance_countours-many_lumis.ipynb`
 * For the background analysis see: https://github.com/jotadram6/AnaMaker
+* LaTeX source: https://www.overleaf.com/read/kgjpjkvsgcmg
 

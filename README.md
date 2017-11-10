@@ -1,4 +1,4 @@
-# VBF_IDM
+# Vector Boson Fusion in the Inert Doublet Model
 Code for [arXiv:1709.09796](https://inspirehep.net/search?p=find+eprint+1709.09796)
 
 [![DOI](https://zenodo.org/badge/95233464.svg)](https://zenodo.org/badge/latestdoi/95233464)

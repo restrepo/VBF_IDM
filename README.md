@@ -1,5 +1,6 @@
 # VBF_IDM
 Code for [arXiv:1709.09796](https://inspirehep.net/search?p=find+eprint+1709.09796)
+[![DOI](https://zenodo.org/badge/95233464.svg)](https://zenodo.org/badge/latestdoi/95233464)
 ```bash
 git clone --recursive git@github.com:restrepo/VBF_IDM.git
 ```
